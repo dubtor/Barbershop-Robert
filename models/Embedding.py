@@ -100,7 +100,7 @@ class Embedding(nn.Module):
         ibar = tqdm(self.dataloader, desc='Images')
         for ref_im_H, ref_im_L, ref_name in ibar:
             optimizer_W, latent = self.setup_W_optimizer()
-            pbar = tqdm(range(self.opts.W_steps), desc='Embedding', leave=False)
+            pbar = tqdm(range(self.opts.W_steps), desc='Embedding W', leave=False)
             for step in pbar:
                 optimizer_W.zero_grad()
                 latent_in = torch.stack(latent).unsqueeze(0)
@@ -142,7 +142,7 @@ class Embedding(nn.Module):
             optimizer_FS, latent_F, latent_S = self.setup_FS_optimizer(latent_W, F_init)
 
 
-            pbar = tqdm(range(self.opts.FS_steps), desc='Embedding', leave=False)
+            pbar = tqdm(range(self.opts.FS_steps), desc='Embedding FS', leave=False)
             for step in pbar:
 
                 optimizer_FS.zero_grad()
